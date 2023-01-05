@@ -10,10 +10,15 @@ import MultipeerConnectivity
 import NearbyInteraction
 
 var r_for_ui: Double = 100
+let r_for_Lv: Int = 0
+
 var offsetX: Double = 0
 var offsetY: Double = 0
+var vertical_r: Double = 0
 
-var istap:Int = 0
+//var istap:Int = 0
+var LvFlag: Int = 1
+var Old_LvFlag: Int = 0
 
 let label = UILabel()
 //ちゃんとこの値が半径に反映されている
@@ -89,11 +94,11 @@ class ViewController: UIViewController {
     
     @objc private func printStack() {
             print("stack")
-            istap = 1
+//            istap = 1
         }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)           
+        super.viewDidAppear(animated)
         
         if niSession != nil {
             return
@@ -153,11 +158,12 @@ extension ViewController: NISessionDelegate {
             let doubleDistance = Double(distanceLabel.text!)
             r_for_ui = doubleDistance!
             
-            if r_for_ui > 1{
-                r_for_ui = 1
-            }
-            
-            
+            //フラッグの値を仕込む
+            LvFlag = Int(r_for_ui)
+            print(r_for_ui)
+//            print(Int(r_for_ui))
+            print(LvFlag)
+
 //            r_UI_Label.text = r_for_ui.description
 //            r_for_uiに、距離のデータを代入
             drawView?.setNeedsDisplay()
@@ -169,12 +175,11 @@ extension ViewController: NISessionDelegate {
         }
         stringData += ","
         
-        
         if let direction = accessory.direction {
             directionXLabel.text = direction.x.description
             directionYLabel.text = direction.y.description
             directionZLabel.text = direction.z.description
-            
+
             //オフセットの処理
             let DoffsetX = Double(directionXLabel.text!)
             let DoffsetY = Double(directionYLabel.text!)
@@ -259,20 +264,27 @@ extension ViewController: NISessionDelegate {
             
             
             // UIImageViewのインスタンスをビューに追加
-            
-            if r_for_ui<1 {
-                self.addSubview(imageView)
-            }else if 1<=r_for_ui && r_for_ui<2 {
-                self.addSubview(imageView2)
-            }else if 2<=r_for_ui && r_for_ui<3 {
-                self.addSubview(imageView3)
-            }else{
-                self.addSubview(imageView4)
+            func removeAllSubviews(parentView: UIView){
+                let subviews = parentView.subviews
+                for subview in subviews {
+                    subview.removeFromSuperview()
+                }
             }
+            removeAllSubviews(parentView: DrawView())
             
+            if LvFlag <= 0 && Old_LvFlag != LvFlag {
+                self.addSubview(imageView)
+                Old_LvFlag = LvFlag
+            }else if  r_for_ui == 1 && Old_LvFlag != LvFlag {
+                self.addSubview(imageView3)
+                Old_LvFlag = LvFlag
+            }else if r_for_ui > 2 && Old_LvFlag < 2 {
+                self.addSubview(imageView4)
+                Old_LvFlag = LvFlag
+            }else{
+                Old_LvFlag = LvFlag
+            }
         }
-
-
     }
 }
 

@@ -354,7 +354,7 @@
 				DEVELOPMENT_TEAM = 6LVVVMHYUM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NearbyInteractionByMultipeerConnectivity/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "exUI auto";
+				INFOPLIST_KEY_CFBundleDisplayName = exUIauto_v2;
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "For exchanging the discovery token.";
 				INFOPLIST_KEY_NSNearbyInteractionUsageDescription = "For the peer's direction and distance.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -386,7 +386,7 @@
 				DEVELOPMENT_TEAM = 6LVVVMHYUM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NearbyInteractionByMultipeerConnectivity/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "exUI auto";
+				INFOPLIST_KEY_CFBundleDisplayName = exUIauto_v2;
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "For exchanging the discovery token.";
 				INFOPLIST_KEY_NSNearbyInteractionUsageDescription = "For the peer's direction and distance.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
